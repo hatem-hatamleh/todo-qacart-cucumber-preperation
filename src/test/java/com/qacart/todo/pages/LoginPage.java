@@ -1,17 +1,15 @@
 package com.qacart.todo.pages;
 
+import com.qacart.todo.base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
-
-    private WebDriver driver;
+public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver,this );
+        super(driver);
     }
 
     @FindBy(css="[data-testid=\"email\"]")
@@ -24,11 +22,14 @@ public class LoginPage {
     private WebElement submit;
 
 
+
+
     // Login method
-    public void login() {
-        loginInput.sendKeys("hatem@example.com");
-        passwordInput.sendKeys("123456");
+    public TodoPage login(String email, String password) {
+        loginInput.sendKeys(email);
+        passwordInput.sendKeys(password);
         submit.click();
+        return new TodoPage(driver);
     }
 
 }
