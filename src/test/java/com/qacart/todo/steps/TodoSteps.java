@@ -1,6 +1,7 @@
 package com.qacart.todo.steps;
 
 import com.qacart.todo.factory.DriverFactory;
+import com.qacart.todo.pages.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,14 +16,14 @@ import java.time.Duration;
 public class TodoSteps {
 
     WebDriver driver;
+    LoginPage loginPage;
 
     @Given("User is in todo page")
     public void user_is_in_todo_page() {
-        driver = DriverFactory.initDriver();
+        driver = DriverFactory.getDriver();
+        loginPage = new LoginPage(driver);
         driver.get("https://qacart-todo.herokuapp.com");
-        driver.findElement(By.cssSelector("[data-testid=\"email\"]")).sendKeys("hatem@example.com");
-        driver.findElement(By.cssSelector("[data-testid=\"password\"]")).sendKeys("123456");
-        driver.findElement(By.cssSelector("[data-testid=\"submit\"]")).click();
+        loginPage.login();
 
     }
 
