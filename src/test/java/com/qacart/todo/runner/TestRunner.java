@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/java/com/qacart/todo/features",
-        glue = "com/qacart/todo/steps",
+        glue = "com/qacart/todo",
         plugin = {"html:target/report/report.html"}
 )
 public class TestRunner {
